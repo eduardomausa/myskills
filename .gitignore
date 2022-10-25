@@ -69,3 +69,6 @@ android
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
+
+# e2e
+.yarn

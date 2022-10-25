@@ -26,7 +26,7 @@ export function Home() {
       name: newSkill
     }
     console.log('new skill', data);
-    
+
 
     setMySkills([...mySkills, data])
   }
@@ -50,10 +50,11 @@ export function Home() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome, Mausa</Text>
+      <Text style={styles.title} testID='welcome'>Welcome, Mausa</Text>
       <Text style={styles.greeting}>{greeting}</Text>
 
       <TextInput
+        testID='input-skill'
         style={styles.input}
         placeholder='New Skill'
         placeholderTextColor='#555'
@@ -61,6 +62,7 @@ export function Home() {
       />
 
       <Button
+        testID='add-button'
         title='Add'
         onPress={handleAddNewSkill}
       />
@@ -69,16 +71,20 @@ export function Home() {
         My Skills
       </Text>
 
-      <FlatList
-        data={mySkills}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <SkillCard
-            skill={item.name}
-            onPress={() => handleRemoveSkill(item.id)}
-          />
-        )}
-      />
+      {mySkills &&
+        <FlatList
+          testID='flatlist-skills'
+          data={mySkills}
+          keyExtractor={item => item.id}
+          keyboardShouldPersistTaps='never'
+          renderItem={({ item }) => (
+            <SkillCard
+              skill={item.name}
+              onPress={() => handleRemoveSkill(item.id)}
+            />
+          )}
+        />
+      }
     </View>
   )
 }
